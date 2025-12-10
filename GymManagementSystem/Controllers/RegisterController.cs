@@ -15,22 +15,26 @@ public class RegisterController : ControllerBase
     private readonly IRegisterService _registerService;
     private readonly ILogger<RegisterController> _logger;
 
-    public RegisterController(ILogger<RegisterController> logger, IAuth authService, IEmailService emailService, IRegisterService registerService)
+    public RegisterController(ILogger<RegisterController> logger, IAuth authService, IEmailService emailService,
+        IRegisterService registerService)
     {
         _logger = logger;
         _authService = authService;
         _emailService = emailService;
         _registerService = registerService;
-        
     }
 
     [HttpGet]
     [Route("/invite")]
-    public async Task<IActionResult> SendInvitation([FromQuery] string email)
+    public async Task<IActionResult> SendInvitation([FromQuery] InvitationDto dto)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         var user = new AccountModel
         {
-            Email = email
+            Email = dto.Email
         };
         var token = _authService.GenerateToken(user);
         var url = $"https://localhost:7252/complete-registration?token={token}";

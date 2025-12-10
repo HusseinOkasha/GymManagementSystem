@@ -5,7 +5,7 @@ using SendGrid.Helpers.Mail;
 
 namespace GymManagementSystem.Services;
 
-public class EmailService(IOptions<EmailConfig> options): IEmailService
+public class EmailService(IOptions<EmailConfig> options) : IEmailService
 {
     public async Task SendEmailAsync(string email, string subject, string message)
     {
@@ -14,7 +14,7 @@ public class EmailService(IOptions<EmailConfig> options): IEmailService
         var to = new EmailAddress(email);
         var msg = MailHelper.CreateSingleEmail(from, to, subject, message, message);
         var response = await client.SendEmailAsync(msg);
-        
+
         // Optional: check response status
         if (response.StatusCode != System.Net.HttpStatusCode.Accepted)
             throw new Exception("Email sending failed.");

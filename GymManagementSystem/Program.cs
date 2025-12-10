@@ -1,9 +1,5 @@
 using System.Text;
-
-
 using Gym_Management_System.Data;
-
-
 using Gym_Management_System.Services;
 using GymManagementSystem.Config;
 using GymManagementSystem.Controllers;

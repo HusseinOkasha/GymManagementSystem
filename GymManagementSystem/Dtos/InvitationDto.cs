@@ -1,3 +1,10 @@
-﻿namespace GymManagementSystem.Dtos;
+﻿using System.ComponentModel.DataAnnotations;
 
-public record InvitationDto(string Email, string Token);
+namespace GymManagementSystem.Dtos;
+
+public class InvitationDto
+{
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; }
+}

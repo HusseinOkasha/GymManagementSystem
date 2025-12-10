@@ -1,11 +1,10 @@
-﻿
-using GymManagementSystem.Models;
+﻿using GymManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GymManagementSystem.Data;
 
-public class AccountConfiguration: IEntityTypeConfiguration<AccountModel>
+public class AccountConfiguration : IEntityTypeConfiguration<AccountModel>
 {
     public void Configure(EntityTypeBuilder<AccountModel> builder)
     {
@@ -17,7 +16,5 @@ public class AccountConfiguration: IEntityTypeConfiguration<AccountModel>
         builder.Property("Email").HasColumnType("varchar").HasMaxLength(255).IsRequired();
         builder.HasIndex(account => account.Email).IsUnique();
         builder.Property("PhoneNumber").HasColumnType("varchar").HasMaxLength(255).IsRequired();
-        
     }
-    
 }

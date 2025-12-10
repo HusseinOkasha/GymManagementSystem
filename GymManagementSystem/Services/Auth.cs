@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace GymManagementSystem.Services;
 
-public class Auth: IAuth
+public class Auth : IAuth
 {
     public readonly IOptions<JwtOption> _options;
 
@@ -17,6 +17,7 @@ public class Auth: IAuth
     {
         _options = options;
     }
+
     public string GenerateToken(AccountModel user)
     {
         var secret = _options.Value.Secret;
@@ -51,7 +52,7 @@ public class Auth: IAuth
             throw new ApplicationException("JWT is not set in the configuration ");
         var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
         var tokenHandler = new JwtSecurityTokenHandler();
-        var result = await tokenHandler.ValidateTokenAsync(token, new TokenValidationParameters()
+        var result = await tokenHandler.ValidateTokenAsync(token, new TokenValidationParameters
         {
             ValidateIssuer = true,
             ValidateAudience = true,
@@ -60,6 +61,5 @@ public class Auth: IAuth
             IssuerSigningKey = signingKey
         });
         return result.IsValid;
-
     }
 }

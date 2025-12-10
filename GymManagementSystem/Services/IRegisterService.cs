@@ -1,6 +1,4 @@
-﻿
-
-using GymManagementSystem.Dtos;
+﻿using GymManagementSystem.Dtos;
 
 namespace GymManagementSystem.Services;
 

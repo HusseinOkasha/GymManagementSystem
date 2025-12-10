@@ -2,7 +2,7 @@
 
 namespace GymManagementSystem.Models;
 
-public class AppRoles:IdentityRole
+public class AppRoles : IdentityRole
 {
     public const string Admin = "Admin";
     public const string Employee = "Employee";

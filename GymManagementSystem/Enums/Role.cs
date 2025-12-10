@@ -1,6 +1,6 @@
 ﻿namespace GymManagementSystem.Enums;
 
-public enum  Role
+public enum Role
 {
     Admin,
     Employee,
