@@ -59,7 +59,35 @@ public class RegisterControllerTests
         // Assert
         result.Should().BeOfType<BadRequestObjectResult>();
     }
+
+    [Fact]
+    public async Task CompleteInvitation_ValidEmail_ReturnOK()
+    {
+        // Arrange
+        CompleteInvitationDto dto = new CompleteInvitationDto { Email = "e1@email.com" };
+        _mockRegisterService.Setup(s => s.CompleteInvitation(It.IsAny<CompleteInvitationDto>())).ReturnsAsync("Token");
+        
+        // Act
+        var result = await _controller.CompleteInvitation(dto);
+        
+        // Assert
+        result.Should().BeOfType<OkObjectResult>();
+    }
     
+    [Fact]
+    public async Task CompleteInvitation_InValidEmail_ReturnBadRequest()
+    {
+        // Arrange
+        CompleteInvitationDto dto = new CompleteInvitationDto { Email = "e1email.com" };
+        _mockRegisterService.Setup(s => s.CompleteInvitation(It.IsAny<CompleteInvitationDto>())).ReturnsAsync("Token");
+        _controller.ModelState.AddModelError("Email", "Email is required");
+        
+        // Act
+        var result = await _controller.CompleteInvitation(dto);
+        
+        // Assert
+        result.Should().BeOfType<BadRequestObjectResult>();
+    }
     
     
     
