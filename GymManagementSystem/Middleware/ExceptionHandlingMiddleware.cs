@@ -37,6 +37,12 @@ public class ExceptionHandlingMiddleware
             context.Response.StatusCode = StatusCodes.Status409Conflict;
             await context.Response.WriteAsJsonAsync(new { error = ex.Message });
         }
+        catch (UnauthorizedException ex)
+        {
+            _logger.LogError(ex, "Failed login");
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await context.Response.WriteAsJsonAsync(ex.Message);
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Unexpected error");

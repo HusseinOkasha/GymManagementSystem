@@ -34,7 +34,7 @@ public class RegisterControllerTests
     {
         // Arrange
         AccountModel user = new AccountModel { Email = "e1@email.com" };
-        _mockAuthService.Setup(s => s.GenerateToken(It.IsAny<AccountModel>())).Returns("Token");
+        _mockAuthService.Setup(s => s.GenerateToken(It.IsAny<AccountModel>(), It.IsAny<IList<string>>())).Returns("Token");
         
         // Act
         InvitationDto dto = new InvitationDto() { Email = user.Email };
@@ -49,7 +49,7 @@ public class RegisterControllerTests
     {
         // Arrange
         AccountModel user = new AccountModel { Email = "e1email.com" };
-        _mockAuthService.Setup(s => s.GenerateToken(It.IsAny<AccountModel>())).Returns("Token");
+        _mockAuthService.Setup(s => s.GenerateToken(It.IsAny<AccountModel>(), It.IsAny<IList<string>>())).Returns("Token");
         _controller.ModelState.AddModelError("Email", "Email is required");
         
         // Act

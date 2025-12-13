@@ -62,6 +62,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IAuth, Auth>();
 builder.Services.AddScoped<RegisterController>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
+builder.Services.AddScoped<AuthController>();
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

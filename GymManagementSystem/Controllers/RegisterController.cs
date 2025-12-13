@@ -36,7 +36,7 @@ public class RegisterController : ControllerBase
         {
             Email = dto.Email
         };
-        var token = _authService.GenerateToken(user);
+        var token = _authService.GenerateToken(user, new List<string>());
         var url = $"https://localhost:7252/complete-registration?token={token}";
         //await _emailService.SendEmailAsync(invitation.Email, "invitation", url);
         return Ok(url);

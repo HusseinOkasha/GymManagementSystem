@@ -38,7 +38,7 @@ public class RegisterService : IRegisterService
         if (!roleResult.Succeeded) throw new AssigningUserRoleException(roleResult.Errors.ToString() ?? "");
 
         // Generate token for the user 
-        var token = _authService.GenerateToken(user);
+        var token = _authService.GenerateToken(user, new List<string>(){dto.Role});
         return token;
     }
 }
