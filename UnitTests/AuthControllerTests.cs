@@ -66,9 +66,9 @@ public class AuthControllerTests
         LoginDto dto = new LoginDto
         {
             Email = "e2@email.com",
-            Password = "Ppassword$12"
+            Password = ""
         };
-        _controller.ModelState.AddModelError("Email", "Email is required");
+        _controller.ModelState.AddModelError("password", "password is required");
         _mockAuthService.Setup(s => s.Login(It.IsAny<LoginDto>())).ReturnsAsync("Token");
         
         // Act
